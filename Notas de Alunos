@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class Questao1{
+    public static void main(String[] args) {
+
+    int Nota1, Nota2, Nota3;
+
+    Scanner scan = new Scanner(System.in);
+
+    System.out.println("Digite a valor da primeira nota: ");
+    Nota1 = scan.nextInt();
+    System.out.println("Digite a valor da segunda nota: ");
+    Nota2 = scan.nextInt();
+    System.out.println("Digite a valor da terceira nota: ");
+    Nota3 = scan.nextInt();
+
+    int soma = Nota1 + Nota2 + Nota3;
+    System.out.println("A soma das notas é: " + soma);
+    int media = soma / 3;
+    System.out.println("A média das notas é: " + media);
+
+    int nota[] = new int[3];
+
+    System.out.println("Digite a primeira nota: ");
+    nota[0] = scan.nextInt();
+    System.out.println("Digite a segunda nota: ");
+    nota[1] = scan.nextInt();
+    System.out.println("Digite a terceira nota: ");
+    nota[2] = scan.nextInt();
+
+    int somarVetor = 0;
+    for(int i = 0; i < nota.length; i++){
+        somarVetor += nota[i];
+    
+    }
+    System.out.println("A soma das notas do vetor é: " + somarVetor);
+    System.out.println("A média das notas do vetor é: " + (somarVetor / nota.length));
+
+// usando matriz para 4 alunos
+
+    int alunos[][] = new int[4][3];
+    for(int i = 0; i < alunos.length; i++){
+        System.out.println("Aluno " + (i + 1));
+        for(int j = 0; j < alunos[i].length; j++){
+            System.out.println("Digite a nota " + (j + 1) + ": ");
+            alunos[i][j] = scan.nextInt();
+        }
+    }
+    //resultados
+    for(int i = 0; i < alunos.length; i++){
+        int somaAluno = 0;
+        for(int j = 0; j < alunos[i].length; j++){
+            somaAluno += alunos[i][j];
+        }
+        System.out.println("A soma das notas do aluno " + (i + 1) + " é: " + somaAluno);
+        System.out.println("A média das notas do aluno " + (i + 1) + " é: " + (somaAluno / alunos[i].length));
+    }
+
+
+}
+}
+
