@@ -1,86 +1,101 @@
+package br.edu.ifma.programacaoII.aulaI;
 import java.util.Scanner;
 
-public class Questao1{
-    public static void main(String[] args) {
 
-    int Nota1, Nota2, Nota3;
+public class SegundaAula {
+        public static void main(String[] args) {
+            String[][] notas = new String[2][4];
+            Scanner input = new Scanner(System.in);
 
-    Scanner scan = new Scanner(System.in);
+            for (int i = 0; i < notas.length; i++) {
+                for (int j = 0; j < notas[i].length; j++) {
+                    if (j == 0) {
+                        System.out.println("Digite o nome do(a) aluno(a):");
+                        notas[i][j] = input.nextLine();
+                    }
+                    else {
+                        System.out.printf("Digite a nota da etapa %d do(a) Aluno(a) %s\n", j, notas[i][0]);
+                        notas[i][j] = input.nextLine();
+                    }
+                }
+            }
 
-    System.out.println("Digite a valor da primeira nota: ");
-    Nota1 = scan.nextInt();
-    System.out.println("Digite a valor da segunda nota: ");
-    Nota2 = scan.nextInt();
-    System.out.println("Digite a valor da terceira nota: ");
-    Nota3 = scan.nextInt();
+            imprimirMatriz(notas);
 
-    int soma = Nota1 + Nota2 + Nota3;
-    System.out.println("A soma das notas é: " + soma);
-    int media = soma / 3;
-    System.out.println("A média das notas é: " + media);
+            for (int i = 0; i < notas.length; i++) {
+                double soma = 0, media = 0;
+                for (int j = 0; j < notas[i].length; j++) {
+                    if (j != 0) {
+                        double notaDouble = Double.parseDouble(notas[i][j]);
+                        soma += notaDouble;
+                    }
+                }
+                media = soma / notas[i].length;
+                //System.out.printf("A soma das notas do(a) Aluno(a) %s é %.2f e sua média é %.2f\n", notas[i][0], soma, media);
+            }
 
-    int nota[] = new int[3];
+            // 1 - receba as demais notas - OK
+            // 2 - somar as notas digitadas pelo usuários - OK
+            // 3 - mostrar a soma das notas - OK
+            // 4 - mostrar a média do aluno - OK
 
-    System.out.println("Digite a primeira nota: ");
-    nota[0] = scan.nextInt();
-    System.out.println("Digite a segunda nota: ");
-    nota[1] = scan.nextInt();
-    System.out.println("Digite a terceira nota: ");
-    nota[2] = scan.nextInt();
+            // 5 - transformar as notas do aluno em um vetor - OK
+            // 6 - alterar para permitir lancar notas de 4 alunos usando matriz - OK
+            // 7 - alterar para o usuario digitar o nome do aluno - OK
+            //     e ao final imprimir a tabela de notas de todos os alunos - OK
+            //     mostrando o nome, as tres notas, a somatória e a média para cada um. - OK
+            //     Modularize em funções separadas. - OK
+            //     Dica: Vai ser necessário converter String para int e vice-versa - OK
+            //  8 - O método imprimirMatriz deve imprimir no seguinte padrão:
+            //
+            // +--------------+---------+---------+---------+---------+---------+---------+
+            // | Aluno(a)     | Etapa 1 | Etapa 2 | Etapa 3 |   Soma  |  Média  | Situação|
+            // +--------------+---------+---------+---------+---------+---------+---------+
+            // |              |         |         |         |         |         |         |
+            // +--------------+---------+---------+---------+---------+---------+---------+
+            // |              |         |         |         |         |         |         |
+            // +--------------+---------+---------+---------+---------+---------+---------+
+            // |              |         |         |         |         |         |         |
+            // +--------------+---------+---------+---------+---------+---------+---------+
+            // | Média Geral da Turma   |      Qtd Aprovados(as)      | Qtd reprovados(as)|
+            // +------------------------+-----------------------------+-------------------+
+            // |                        |                             |                   |
+            // +------------------------+-----------------------------+-------------------+
 
-    int somarVetor = 0;
-    for(int i = 0; i < nota.length; i++){
-        somarVetor += nota[i];
-    
-    }
-    System.out.println("A soma das notas do vetor é: " + somarVetor);
-    System.out.println("A média das notas do vetor é: " + (somarVetor / nota.length));
 
-// usando matriz para 4 alunos
-
-    int alunos[][] = new int[4][3];
-    for(int i = 0; i < alunos.length; i++){
-        System.out.println("Aluno " + (i + 1));
-        for(int j = 0; j < alunos[i].length; j++){
-            System.out.println("Digite a nota " + (j + 1) + ": ");
-            alunos[i][j] = scan.nextInt();
         }
-    }
-    //resultados
-    for(int i = 0; i < alunos.length; i++){
-        int somaAluno = 0;
-        for(int j = 0; j < alunos[i].length; j++){
-            somaAluno += alunos[i][j];
+
+        public static void imprimirMatriz(String[][] matriz) {
+            System.out.println("Tabela de notas:");
+            System.out.println("-----------------------------------------------------");
+            System.out.println("Nome\tNota1\tNota2\tNota3\tSoma\tMédia\tSituação");
+            System.out.println("-----------------------------------------------------");
+            //colocar a media geral da turma, mostrar a quantidade de aprovado e reprovado e por fim,
+            //colocar esses dados abaixo da matriz das notas dos alunos em 3 colunas
+            for (int i = 0; i < matriz.length; i++) {
+                for (int j = 0; j < matriz[i].length; j++) {
+                    if (j == matriz[i].length - 1) {
+                        double soma = 0;
+                        for (int k = 1; k < matriz[i].length; k++) {
+                            double notaDouble = Double.parseDouble(matriz[i][k]);
+                            soma += notaDouble;
+                        }
+                        double media = soma / (matriz[i].length - 1);
+                        String situacao = media >= 7 ? "Aprovado" : "Reprovado";
+                        System.out.print(matriz[i][0]+ "\t "+  matriz[i][1] + "\t "+  matriz[i][2] + "\t "+ matriz[i][3]+ "\t "+  soma + " \t"+  media + " \t"+  situacao );
+                    }
+
+
+
+                }
+
+
+
+                System.out.println();
+                System.out.println("-----------------------------------------------------");
+                
+            }
         }
-        System.out.println("A soma das notas do aluno " + (i + 1) + " é: " + somaAluno);
-        System.out.println("A média das notas do aluno " + (i + 1) + " é: " + (somaAluno / alunos[i].length));
+
     }
-
-//7° desafio, colocar para o usuario digitar o nome do aluno 
-
-    int alunos2[][] = new int[4][4];
-    String nomes[] = new String[4];
-    for(int i = 0; i < alunos2.length; i++){
-        System.out.println("Digite o nome do aluno " + (i + 1) + ": ");
-        nomes[i] = scan.next();
-        for(int j = 0; j < alunos2[i].length - 1; j++){
-            System.out.println("Digite a nota " + (j + 1) + ": ");
-            alunos2[i][j] = scan.nextInt();
-        }
-    }
-    //resultados
-    System.out.println("Tabela de notas:");
-    System.out.println("Nome\tNota1\tNota2\tNota3\tSoma\tMédia");
-    for(int i = 0; i < alunos2.length; i++){
-        int somaAluno = 0;
-        for(int j = 0; j < alunos2[i].length - 1; j++){
-            somaAluno += alunos2[i][j];
-        }
-        alunos2[i][3] = somaAluno; // armazenar a soma na quarta coluna
-        System.out.println(nomes[i] + "\t" + alunos2[i][0] + "\t" + alunos2[i][1] + "\t" + alunos2[i][2] + "\t" + alunos2[i][3] + "\t" + (somaAluno / (alunos2[i].length - 1)));
-    }
-
-
-}
-}
 
