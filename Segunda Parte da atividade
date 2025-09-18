@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class SegundaAula {
+
+    public static void main(String[] args) {
+        String[][] notas = new String[2][4];
+        Scanner input = new Scanner(System.in);
+
+        for (int i = 0; i < notas.length; i++) {
+            for (int j = 0; j < notas[i].length; j++) {
+                if (j == 0) {
+                    System.out.println("Digite o nome do(a) aluno(a):");
+                    notas[i][j] = input.nextLine();
+                }
+                else {
+                    System.out.printf("Digite a nota da etapa %d do(a) Aluno(a) %s\n", j, notas[i][0]);
+                    notas[i][j] = input.nextLine();
+                }
+            }
+        }
+
+        imprimirMatriz(notas);
+
+        for (int i = 0; i < notas.length; i++) {
+            double soma = 0, media = 0;
+            for (int j = 0; j < notas[i].length; j++) {
+                if (j != 0) {
+                    double notaDouble = Double.parseDouble(notas[i][j]);
+                    soma += notaDouble;
+                }
+            }
+            media = soma / notas[i].length;
+            System.out.printf("A soma das notas do(a) Aluno(a) %s é %.2f e sua média é %.2f\n", notas[i][0], soma, media);
+        }
+
+        // 1 - receba as demais notas - OK
+        // 2 - somar as notas digitadas pelo usuários - OK
+        // 3 - mostrar a soma das notas - OK
+        // 4 - mostrar a média do aluno - OK
+
+        // 5 - transformar as notas do aluno em um vetor - OK
+        // 6 - alterar para permitir lancar notas de 4 alunos usando matriz - OK
+        // 7 - alterar para o usuario digitar o nome do aluno - OK
+        //     e ao final imprimir a tabela de notas de todos os alunos - OK
+        //     mostrando o nome, as tres notas, a somatória e a média para cada um. - OK
+        //     Modularize em funções separadas. - OK
+        //     Dica: Vai ser necessário converter String para int e vice-versa - OK
+        //  8 - O método imprimirMatriz deve imprimir no seguinte padrão:
+        //
+        // +--------------+---------+---------+---------+---------+---------+---------+
+        // | Aluno(a)     | Etapa 1 | Etapa 2 | Etapa 3 |   Soma  |  Média  | Situação|
+        // +--------------+---------+---------+---------+---------+---------+---------+
+        // |              |         |         |         |         |         |         |
+        // +--------------+---------+---------+---------+---------+---------+---------+
+        // |              |         |         |         |         |         |         |
+        // +--------------+---------+---------+---------+---------+---------+---------+
+        // |              |         |         |         |         |         |         |
+        // +--------------+---------+---------+---------+---------+---------+---------+
+        // | Média Geral da Turma   |      Qtd Aprovados(as)      | Qtd reprovados(as)|
+        // +------------------------+-----------------------------+-------------------+
+        // |                        |                             |                   |
+        // +------------------------+-----------------------------+-------------------+
+
+
+    }
+
+    public static void imprimirMatriz(String[][] matriz) {
+    System.out.println("Tabela de notas:");
+    System.out.println("-----------------------------------------------------");
+    System.out.println("Nome\tNota1\tNota2\tNota3\tSoma\tMédia\tSituação");
+    //colocar a soma e a media na matriz e a situacao, menos de 7 reprovado e mais de 7 aprovado
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (j == matriz[i].length - 1) {
+                    double soma = 0;
+                    for (int k = 1; k < matriz[i].length; k++) {
+                        double notaDouble = Double.parseDouble(matriz[i][k]);
+                        soma += notaDouble;
+                    }
+                    double media = soma / (matriz[i].length - 1);
+                    String situacao = media >= 7 ? "Aprovado" : "Reprovado";
+                    System.out.printf("%.2f\t%.2f\t%s", soma, media, situacao);
+                }
+       
+
+               
+            }
+
+
+                
+            System.out.println();
+        }
+    }
+
+}
