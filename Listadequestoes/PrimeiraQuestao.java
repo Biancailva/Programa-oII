@@ -71,7 +71,8 @@ public class PrimeiraQuestao {
 
 
 
-}
+}//modularizacao coloco todas as instancias na funcao, revisar void e quando devo usar ela, fazer isso amanha
+
 
 
 
