@@ -1,14 +1,21 @@
 //Leia uma matriz NxN e implemente funções para: (a) rotacionar a matriz 90° no sentido
 //horário, (b) rotacionar a matriz 90° no sentido anti-horário, (c) rotacionar 180°. Exiba a
 //matriz original e o resultado de cada rotação.
+import java.util.Scanner;
 public class Questao8 {
     public static void main(String[] args) {
-        int n = 3; //tamanho da matriz
-        int[][] matriz = {
-            {1, 2, 3},
-            {4, 5, 6},
-            {7, 8, 9}
-        };
+        int linha = 0;
+        int coluna = 0;
+        int[][] matriz = new int[linha][coluna];
+        Scanner scan = new Scanner(System.in);
+        for (int i = 0; i < matriz.length; i++) {
+            System.out.println("Linha " + (i + 1));
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.println("Digite o número da coluna " + (j + 1) + ": ");
+                matriz[i][j] = scan.nextInt();
+            }
+     }
+        ExibirResultados(matriz);
     }
         public static int[][] rotacionar90Horario(int[][] matriz) {
         int n = matriz.length;
