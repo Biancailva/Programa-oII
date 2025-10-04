@@ -31,7 +31,7 @@ public class Questao2 {
             boolean isJogadaBemSucedida = efetuarJogada(tabuleiro, linhaJogada, colunaJogada, jogador);
             if (isJogadaBemSucedida) {
                 jogador = (jogador == VALOR_X) ? VALOR_O : VALOR_X;// trocando de jogador a cada partida
-            }
+            }// isso é meio que se fosse if e else, so que mais limpo
             System.out.println();
             imprimirTabuleiro(tabuleiro);
         } while (!isPartidaFinalizou(tabuleiro));
@@ -44,12 +44,12 @@ public class Questao2 {
             //verifica linhas
             if (tabuleiro[i][0] != VALOR_VAZIO && tabuleiro[i][0] == tabuleiro[i][1] && tabuleiro[i][1] == tabuleiro[i][2]) {
                 System.out.println("O jogador " + tabuleiro[i][0] + " venceu!");
-                return true;
+                return true;// aqui ele so veririfca as linhas, todas
             }
             //verifica colunas
             if (tabuleiro[0][i] != VALOR_VAZIO && tabuleiro[0][i] == tabuleiro[1][i] && tabuleiro[1][i] == tabuleiro[2][i]) {
                 System.out.println("O jogador " + tabuleiro[0][i] + " venceu!");
-                return true;
+                return true;// aqui ele verifica todas as colunas
             }
         }
         //verifica diagonais
