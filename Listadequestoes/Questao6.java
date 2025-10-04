@@ -2,14 +2,24 @@
 //matriz é simétrica em relação à diagonal principal, (b) verificar se a matriz é simétrica em
 //relação à diagonal secundária, (c) criar e exibir a matriz espelhada (inversão da ordem das
 //linhas). O programa deve informar claramente os resultados para cada caso.
+import java.util.Scanner;
 public class Questao6 {
     public static void main(String[] args) {
-        int n = 3; //tamanho da matriz
-        int[][] matriz = {
-            {1, 2, 3},
-            {2, 4, 5},
-            {3, 5, 6}
-        };
+        int linha = 0;
+        int coluna = 0;
+       int [][] matriz = new int[linha][coluna];
+         Scanner scan = new Scanner(System.in);
+            System.out.println("Digite o número de linhas e colunas da matriz (N x N): ");
+            int n = scan.nextInt();
+            for (int i = 0; i < n; i++) {
+                System.out.println("Linha " + (i + 1));
+                for (int j = 0; j < n; j++) {
+                    System.out.println("Digite o número da coluna " + (j + 1) + ": ");
+                    matriz[i][j] = scan.nextInt();
+                }
+            }
+            ExibirResultados(matriz);
+
     }
         public static boolean verificarSimetriaDiagonalPrincipal(int[][] matriz) {
         int n = matriz.length;
