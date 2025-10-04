@@ -2,10 +2,21 @@
 //duplicados, mantendo apenas a primeira ocorrência, (b) gerar um novo vetor apenas com os
 //valores distintos, (c) exibir o vetor original e o comprimido. Esse exercício trabalha lógica
 //de busca e manipulação de vetores sem usar estruturas prontas como Set.
+import java.util.Scanner;
 public class Questao7 {
     public static void main(String[] args) {
-        int[] vetor = {1, 2, 3, 2, 4, 5, 1, 6, 7, 8, 5, 9, 10, 8, 11, 12, 13, 14, 15, 10};
+        int vetor [] = new int[20];
+        //usuario ira digitar os valores do vetor
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite os valores do vetor: ");
+        for(int i = 0; i < vetor.length; i++){
+            System.out.println("Digite o valor da posição " + (i + 1) + ": ");
+            vetor[i] = scan.nextInt();
+        }
+        mainExecution(vetor);
+
     }
+
     public static int[] eliminarDuplicados(int[] vetor) {
         int n = vetor.length;
         int[] temp = new int[n];
@@ -51,10 +62,8 @@ public class Questao7 {
         }
         System.out.println();
     }
-    public static void mainExecution() {
-        int[] vetor = {1, 2, 3, 2, 4
-, 5, 1, 6, 7, 8, 5, 9, 10, 8, 11, 12, 13, 14, 15, 10};
-
+    public static void mainExecution(int[] vetor) {
+       
         System.out.println("Vetor Original:");
         exibirVetor(vetor);
         
