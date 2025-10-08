@@ -1,92 +1,58 @@
+
 //Leia as notas de 30 alunos. Implemente funções para calcular a média da turma, contar - ok
 //quantos alunos estão acima da média e exibir a maior e a menor nota. O programa deve
 //mostrar ao final todas essas estatísticas, permitindo uma análise do desempenho da turma.
 import java.util.Scanner;
-
 public class PrimeiraQuestao {
     public static void main(String[] args) {
+        int notas[][] = new int[3][4];
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < notas.length; i++) {
+            for (int j = 0; j < notas[i].length; j++) {
+                System.out.printf("Digite a nota %d do aluno %d: ", j + 1, i + 1);
+                notas[i][j] = input.nextInt();//isso é para digitar
 
-        Scanner scan = new Scanner(System.in);
-        int alunos[][] = new int[30][3];
-        for (int i = 0; i < alunos.length; i++) {
-            System.out.println("Aluno " + (i + 1));
-            for (int j = 0; j < alunos[i].length; j++) {
-                System.out.println("Digite a nota " + (j + 1) + ": ");
-                alunos[i][j] = scan.nextInt();
             }
         }
-        AlunosAcimaMedia(alunos);
-        MaiorNota(alunos);
-        //MediaTurma(alunos);
-        //ImprimirResutados(alunos);
-
-        //resultados
-        //
+        estatisticasTurma(notas);
 
 
     }
-
-
-    public static void AlunosAcimaMedia(int[][] alunos) {
-        //mostrar quantos alunos estão acima da média
-        int somaNotas = 0;
-        for (int i = 0; i < alunos.length; i++) {
-            for (int j = 0; alunos[i].length > j; j++) {
-                somaNotas += alunos[i][j];
+    //calcular a média da turma
+    public static double calcularMediaTurma(int[][] notas) {
+        double soma = 0;
+        int totalNotas = 0;//variavel criada para armazenar valor
+        for (int i = 0; i < notas.length; i++) {
+            for (int j = 0; j < notas[i].length; j++) {
+                soma += notas[i][j];
+                totalNotas++;
             }
         }
-    }
-
-    public static void MaiorNota(int[][] alunos) {
+        return soma / totalNotas;
+    }//alunos acima da media e exibir maior e menor nota
+    public static void estatisticasTurma(int[][] notas) {
+        double mediaTurma = calcularMediaTurma(notas);
+        int countAcimaMedia = 0;
         int maiorNota = Integer.MIN_VALUE;
         int menorNota = Integer.MAX_VALUE;
-        for (int i = 0; i < alunos.length; i++) {
-            for (int j = 0; j < alunos[i].length; j++) {
-                if (alunos[i][j] > maiorNota) {
-                    maiorNota = alunos[i][j];
+
+        for (int i = 0; i < notas.length; i++) {
+            for (int j = 0; j < notas[i].length; j++) {
+                if (notas[i][j] > mediaTurma) {
+                    countAcimaMedia++;
                 }
-                if (alunos[i][j] < menorNota) {
-                    menorNota = alunos[i][j];
+                if (notas[i][j] > maiorNota) {
+                    maiorNota = notas[i][j];
+                }
+                if (notas[i][j] < menorNota) {
+                    menorNota = notas[i][j];
                 }
             }
         }
 
-    }
-
-
-    public static void MediaTurma(double[][] alunos, int somaNotas) {
-        double mediaTurma = (double) somaNotas / (alunos.length * alunos[0].length);
-        int alunosAcimaMedia = 0;
-        for (int i = 0; i < alunos.length; i++) {
-            double somaAluno = 0;
-            for (int j = 0; j < alunos[i].length; j++) {
-                somaAluno += alunos[i][j];
-            }
-            double mediaAluno = somaAluno / alunos[i].length;
-            if (mediaAluno > mediaTurma) {
-                alunosAcimaMedia++;
-            }
-        }
-    }
-
-    public static void ImprimirResutados(int [][] alunos, int maiorNota, int menorNota, double mediaTurma, int alunosAcimaMedia) {
-        System.out.println("A maior nota da turma é: " + maiorNota);
-        System.out.println("A menor nota da turma é: " + menorNota);
-        System.out.println("A média da turma é: " + mediaTurma);
-        System.out.println("O número de alunos acima da média é: " + alunosAcimaMedia);
-
-        //resultados
-        for (int i = 0; i < alunos.length; i++) {
-            int somaAluno = 0;
-            for (int j = 0; j < alunos[i].length; j++) {
-                somaAluno += alunos[i][j];
-            }
-            System.out.println("A soma das notas do aluno " + (i + 1) + " é: " + somaAluno);
-            System.out.println("A média das notas do aluno " + (i + 1) + " é: " + (somaAluno / alunos[i].length));
-        }
-
+        System.out.printf("Média da turma: %.2f\n", mediaTurma);
+        System.out.println("Quantidade de alunos acima da média: " + countAcimaMedia);
+        System.out.println("Maior nota: " + maiorNota);
+        System.out.println("Menor nota: " + menorNota);
     }
 }
-          
-
-
