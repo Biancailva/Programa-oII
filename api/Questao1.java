@@ -11,6 +11,12 @@ public class Questao1 {
         nomes.add("Maria");
         nomes.add("João");
         nomes.add("Beatriz");
+
+        //pega o nome pelo indice q vai se iniciar a contagem em 0
+        String nomeIndice = nomes.get(1);
+        System.out.println(nomeIndice);
+
+
        
 
         System.out.println("Lista de nomes:");
@@ -19,3 +25,4 @@ public class Questao1 {
         }
     }
 }
+
